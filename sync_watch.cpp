@@ -29,7 +29,7 @@ void SyncWatch::addInotifyWatch(const fs::path& path)
         return;
     }
 
-    auto wd = inotify_add_watch(fd, path.c_str(), IN_CLOSE | IN_DELETE);
+    auto wd = inotify_add_watch(fd, path.c_str(), IN_CLOSE_WRITE | IN_DELETE);
     if (-1 == wd)
     {
         log<level::ERR>("inotify_add_watch failed", entry("ERRNO=%d", errno),
